@@ -16,13 +16,15 @@ def binary_search(arr, target):
 
 def binary_search_rec(arr, target, left, right):
     mid = left + (right - left) // 2
-    if left > right:
-        return -1
-    if arr[mid] == target:
-        return mid
-    elif arr[mid] < target:
-        return binary_search_rec(arr, target, mid+1, right)
-    else:
-        return binary_search_rec(arr, target, left, mid-1)
+    if left <= right:
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            return binary_search_rec(arr, target, mid+1, right)
+        else:
+            return binary_search_rec(arr, target, left, mid-1)
     return -1
+
+
+
 
