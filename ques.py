@@ -44,15 +44,14 @@ Subtask-2 (70% weightage):
 0 <= b <= 10<sup>18</sup>
 2 <= c <= 10<sup>18</sup>
 """
-def powerMod(a, b, c):
-    ans = 1
-    a = a % c
-    while b > 0:
-        if b % 2 == 1:
-            ans = (ans * a) % c
-        a = (a * a) % c 
-        b //= 2 
-    return ans
+def power(base, exp, mod):
+    result = 1
+    while exp > 0:
+        if exp % 2 == 1:
+            result = (result * base) % mod
+        base = (base * base) % mod
+        exp //= 2
+    return result
 
 
 
@@ -121,3 +120,58 @@ def upper_bound(arr, target):
 
 def count_in_range(arr, L, R):
     return upper_bound(arr, R) - lower_bound(arr, L)
+
+#Bonus 
+
+
+"""Equal Products
+hard
+You are given two arrays A and B of equal size N.
+
+You are allowed to perform the following operation any number of times(possibly zero):
+ - choose two integer i and j (1 <= i < j <= N) and swap Bi and Bj.
+
+You have determine if it is possible make Ai*Bi = Aj*Bj for all integer i and j (1 <= i < j <= N)"""
+def equalProducts(A, B):
+    if len(A) != len(B):
+        return False
+    
+    base_product = A[0] * B[0] 
+    for i in range(len(A)):
+        if A[i] * B[0] != B[i] * A[0]:
+            return False
+    return True
+
+
+
+
+
+"""Q2.
+Candy Mania
+hard
+There is a shop that sells N different types of candies, where the cost of each candy is given in an array A of size N.
+
+Additionally, M people arrive at the shop, and each person has a certain amount of budget with them. Each person wants to buy as many different types of candies as possible without exceeding their budget.
+For each person find maximum number of distinct candies(you can't buy the same candy twice), they can buy within their budget
+
+Each person acts independently, meaning that their choices do not affect others."""
+
+def candyMania(A, budgets):
+    A.sort()
+    prefix_sum = [0] * (len(A) + 1)
+
+    for i in range(len(A)):
+        prefix_sum[i+1] = prefix_sum[i] + A[i]  # Compute prefix sum
+
+    def binary_search(budget):
+        left, right = 0, len(A)
+        while left < right:
+            mid = (left + right + 1) // 2  # Move mid towards right
+            if prefix_sum[mid] <= budget:
+                left = mid  # Move right
+            else:
+                right = mid - 1  # Move left
+        return left  # Max candies within budget
+
+    res = [binary_search(budget) for budget in budgets]
+    return res
