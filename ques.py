@@ -175,3 +175,7 @@ def candyMania(A, budgets):
 
     res = [binary_search(budget) for budget in budgets]
     return res
+
+
+
+# changes made in the code
