@@ -18,7 +18,7 @@
 arr = [2,2,1,1,1,2,2]
 # print(majorityElement(arr))
 
-
+#changes
 
 freq = 0
 ans = 0
