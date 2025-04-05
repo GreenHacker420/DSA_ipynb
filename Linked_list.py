@@ -87,6 +87,7 @@ class LinkedList:
             current = current.next
         print("None")
 
+#update
 
 
 linkedList = LinkedList()
