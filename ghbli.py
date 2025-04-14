@@ -106,6 +106,3 @@ cv2.imwrite(output_image_path, stylized_image)
 cv2.imshow("Ghibli Art", stylized_image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-
-
-#updating the code
